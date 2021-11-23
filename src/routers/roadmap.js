@@ -2,7 +2,7 @@ let express = require('express')
 let router = express.Router()
 let logger = require('../logs/logger')
 
-const { getRoadmap } = require('../controllers/roadmap/roadmap')
+const Roadmap = require('../models/roadmap/roadmap')
 
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
@@ -11,7 +11,14 @@ const { getRoadmap } = require('../controllers/roadmap/roadmap')
 // })
 
 router.get('/roadmap', ((req, res) => {
-    return getRoadmap()
+    Roadmap.find({}, (err, doc) => {
+        if (err) {
+            logger.info(err)
+            return
+        }
+
+        res.json(doc)
+    })
 }))
 
 router.post('/roadmap', ((req, res) => {
