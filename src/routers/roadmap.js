@@ -3,6 +3,7 @@ let router = express.Router()
 let logger = require('../logs/logger')
 
 const Roadmap = require('../models/roadmap/roadmap')
+const User = require('../models/user/user')
 
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
@@ -22,10 +23,14 @@ router.get('/roadmap', ((req, res) => {
 }))
 
 router.post('/roadmap', ((req, res) => {
+    let name = req.body.name
     let path = req.body.path
     let station = req.body.station
+    let time = req.body.time
 
-    logger.info(path + ' ' + station)
+    new User({name: name, line: path, station: station, time: time}).save().then(
+        logger.info('add ' + name + ' ' + path + ' ' + station + ' ' + time)
+    )
 }))
 
 module.exports = router
