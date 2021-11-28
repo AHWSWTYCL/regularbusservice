@@ -24,13 +24,17 @@ router.get('/roadmap', ((req, res) => {
 
 router.post('/roadmap', ((req, res) => {
     let name = req.body.name
-    let path = req.body.path
+    let line = req.body.path
     let station = req.body.station
     let time = req.body.time
 
-    new User({name: name, line: path, station: station, time: time}).save().then(
-        logger.info('add ' + name + ' ' + path + ' ' + station + ' ' + time)
-    )
+    User.updateOne({name: name}, {$set:{line: line, station: station, time: time}}, (err, raw) => {
+        if (err) {
+            logger.error('更新' + name + '数据失败：' + err)
+        } else {
+            logger.info('更新' + name + '数据成功！')
+        }
+    })
 }))
 
 module.exports = router

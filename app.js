@@ -4,6 +4,7 @@ let logger = require('./src/logs/logger')
 
 // route
 let roadmap = require('./src/routers/roadmap')
+let login = require('./src/routers/login')
 
 let http = require('http')
 let app = express()
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // load the router module in the app
 app.use('/', roadmap)
+app.use('/', login)
 
 app.listen(8081, '127.0.0.1')
 
