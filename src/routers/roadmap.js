@@ -29,10 +29,15 @@ router.post('/roadmap', ((req, res) => {
     let time = req.body.time
 
     User.updateOne({name: name}, {$set:{line: line, station: station, time: time}}, (err, raw) => {
+        let result = {}
         if (err) {
             logger.error('更新' + name + '数据失败：' + err)
+            result.code = -1
+            res.json(result)
         } else {
             logger.info('更新' + name + '数据成功！')
+            result.code = 0
+            res.json(result)
         }
     })
 }))
