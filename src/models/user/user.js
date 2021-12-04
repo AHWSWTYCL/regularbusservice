@@ -1,11 +1,11 @@
 let mongoose = require('../../db/mongodb')
 
-var RoadmapSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
     name: String,
     password: String,
     line: String,
     station: String,
     time: String
-}, {versionKey: false})
+}, {versionKey: false});
 
-module.exports = mongoose.model('User', RoadmapSchema, 'user')
+module.exports = mongoose.model('User', UserSchema, 'user')

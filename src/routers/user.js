@@ -4,7 +4,6 @@ let logger = require('../logs/logger')
 let url = require('url')
 
 const User = require('../models/user/user')
-const {use} = require("express/lib/router");
 
 router.get('/user', function (req, res) {
     let userInfo = url.parse(req.url, true)
