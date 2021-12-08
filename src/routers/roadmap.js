@@ -3,43 +3,35 @@ let router = express.Router()
 let logger = require('../logs/logger')
 
 const Roadmap = require('../models/roadmap/roadmap')
-const User = require('../models/user/user')
-
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
 //     logger.info('Time', Date.now().toLocaleString())
 //     next()
 // })
 
-router.get('/roadmap', ((req, res) => {
-    Roadmap.find({}, (err, doc) => {
-        if (err) {
-            logger.info(err)
-            return
-        }
-
-        res.json(doc)
-    })
-}))
-
-router.post('/roadmap', ((req, res) => {
+router.post('/add-station', function (req, res) {
+    let line = req.body.line
     let name = req.body.name
-    let line = req.body.path
-    let station = req.body.station
     let time = req.body.time
+    // TODO: 查重
+    new Roadmap({line: line, station: name, time: time})
+        .save(function (err, ret) {
+            if (err) {
+                logger.error(err)
+            }
+        })
+})
 
-    User.updateOne({name: name}, {$set:{line: line, station: station, time: time}}, (err, raw) => {
-        let result = {}
-        if (err) {
-            logger.error('更新' + name + '数据失败：' + err)
-            result.code = -1
-            res.json(result)
-        } else {
-            logger.info('更新' + name + '数据成功！')
-            result.code = 0
-            res.json(result)
-        }
-    })
-}))
+router.post('/delete-station', function (req, res) {
+    let stations = req.body.stations
+    for (const station of stations) {
+        Roadmap.deleteOne(station,
+            function (err, ret) {
+            if (err) {
+                logger.error(err)
+            }
+        })
+    }
+})
 
 module.exports = router
