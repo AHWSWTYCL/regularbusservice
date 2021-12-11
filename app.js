@@ -3,6 +3,7 @@ let bodyParser = require('body-parser') //用于req.body获取值的
 
 // route
 let roadmap = require('./src/routers/roadmap')
+let register = require('./src/routers/register')
 let login = require('./src/routers/login')
 let user = require('./src/routers/user')
 let driver = require('./src/routers/driver')
@@ -16,9 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // load the router module in the app
 app.use('/', roadmap)
+app.use('/', register)
 app.use('/', login)
 app.use('/', user)
 app.use('/', driver)
 
-app.listen(8081, '127.0.0.1')
+module.exports = app
 
