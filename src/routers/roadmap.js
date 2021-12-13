@@ -1,8 +1,8 @@
-let express = require('express')
+const Router = require('koa-router')
 const {addStation, deleteStation} = require('../controllers/roadmap.controller')
 
 
-let router = express.Router()
+const router = new Router()
 
 router.post('/add-station', addStation)
 

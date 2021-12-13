@@ -1,26 +1,26 @@
-let express = require('express')
-let bodyParser = require('body-parser') //用于req.body获取值的
+const Koa = require('koa')
+const koaBody = require('koa-body')
+const cors =  require('koa2-cors')
+
+const app = new Koa()
 
 // route
-let roadmap = require('./src/routers/roadmap')
-let register = require('./src/routers/register')
-let login = require('./src/routers/login')
-let user = require('./src/routers/user')
-let driver = require('./src/routers/driver')
+const roadmapRouter = require('./src/routers/roadmap')
+const registerRouter = require('./src/routers/register')
+const loginRouter = require('./src/routers/login')
+const userRouter = require('./src/routers/user')
+const driverRouter = require('./src/routers/driver')
 
-let app = express()
 
-app.use(require('cors')()) // 跨域请求
-app.use(bodyParser.json())
-// 创建 application/x-www-form-urlencoded 编码解析
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors()) // 跨域请求
+app.use(koaBody())
 
 // load the router module in the app
-app.use('/', roadmap)
-app.use('/', register)
-app.use('/', login)
-app.use('/', user)
-app.use('/', driver)
+app.use(roadmapRouter.routes())
+app.use(registerRouter.routes())
+app.use(loginRouter.routes())
+app.use(userRouter.routes())
+app.use(driverRouter.routes())
 
 module.exports = app
 

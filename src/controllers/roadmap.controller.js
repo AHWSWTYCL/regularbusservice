@@ -2,28 +2,27 @@ const Roadmap = require("../models/roadmap/roadmap");
 const logger = require("../logs/logger");
 
 class RoadmapController {
-    addStation(req, res) {
-        let line = req.body.line
-        let name = req.body.name
-        let time = req.body.time
+    async addStation(ctx, next) {
+        let line = ctx.request.body.line
+        let name = ctx.request.body.name
+        let time = ctx.request.body.time
         // TODO: 查重
-        new Roadmap({line: line, station: name, time: time})
-            .save(function (err, ret) {
-                if (err) {
-                    logger.error(err)
-                }
-            })
+        try {
+            await new Roadmap({line: line, station: name, time: time})
+                .save()
+        } catch(err) {
+            logger.error(err)
+        }
     }
 
-    deleteStation(req, res) {
+    async deleteStation(req, res) {
         let stations = req.body.stations
-        for (const station of stations) {
-            Roadmap.deleteOne(station,
-                function (err, ret) {
-                    if (err) {
-                        logger.error(err)
-                    }
-                })
+        try {
+            for (const station of stations) {
+                await Roadmap.deleteOne(station)
+            }
+        } catch (err) {
+            logger.error(err)
         }
     }
 }

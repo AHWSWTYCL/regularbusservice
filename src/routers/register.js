@@ -1,6 +1,8 @@
-let express = require('express')
-let router = express.Router()
+const Router = require('koa-router')
 const {register} = require('../controllers/register.controller')
+
+
+const router = new Router()
 
 router.post('/register', register)
 

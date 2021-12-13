@@ -102,3 +102,79 @@
 [2021-12-11T11:49:58.996] [INFO] cheese - mongodb连接成功.
 [2021-12-11T11:59:01.468] [INFO] cheese - mongodb连接成功.
 [2021-12-11T11:59:58.417] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:15:00.539] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:17:04.190] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:17:05.881] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:19:51.945] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:24:39.923] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:25:39.436] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:26:45.461] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:27:01.999] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:28:14.365] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:30:10.417] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:32:28.297] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:34:29.736] [INFO] cheese - mongodb连接成功.
+[2021-12-12T10:57:56.575] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:03:24.496] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:05:18.506] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:06:09.915] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:24:19.698] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:24:24.700] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:30:57.348] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:31:32.641] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:35:45.876] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:37:14.226] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:38:58.641] [INFO] cheese - mongodb连接成功.
+[2021-12-12T11:44:29.025] [INFO] cheese - mongodb连接成功.
+[2021-12-12T15:38:53.668] [ERROR] cheese - MongooseServerSelectionError: connection timed out
+    at NativeConnection.Connection.openUri (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/connection.js:797:32)
+    at /Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:332:10
+    at promiseOrCallback (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/helpers/promiseOrCallback.js:10:12)
+    at Mongoose._promiseOrCallback (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:1153:10)
+    at Mongoose.connect (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:331:20)
+    at Object.<anonymous> (/Users/wangshanwu/WebstormProjects/regularbusservice/src/db/mongodb.js:4:10)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12) {
+  reason: TopologyDescription {
+    type: 'Unknown',
+    servers: Map(1) { '127.0.0.1:27017' => [ServerDescription] },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    logicalSessionTimeoutMinutes: undefined
+  }
+}
+[2021-12-12T15:38:53.669] [INFO] cheese - mongodb连接成功.
+[2021-12-12T16:02:25.042] [ERROR] cheese - MongooseServerSelectionError: connection timed out
+    at NativeConnection.Connection.openUri (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/connection.js:797:32)
+    at /Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:332:10
+    at promiseOrCallback (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/helpers/promiseOrCallback.js:10:12)
+    at Mongoose._promiseOrCallback (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:1153:10)
+    at Mongoose.connect (/Users/wangshanwu/WebstormProjects/regularbusservice/node_modules/mongoose/lib/index.js:331:20)
+    at Object.<anonymous> (/Users/wangshanwu/WebstormProjects/regularbusservice/src/db/mongodb.js:4:10)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12) {
+  reason: TopologyDescription {
+    type: 'Unknown',
+    servers: Map(1) { '127.0.0.1:27017' => [ServerDescription] },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    logicalSessionTimeoutMinutes: undefined
+  }
+}
+[2021-12-12T16:02:25.046] [INFO] cheese - mongodb连接成功.
+[2021-12-13T20:36:32.156] [INFO] cheese - mongodb连接成功.
+[2021-12-13T20:39:22.681] [INFO] cheese - mongodb连接成功.
+[2021-12-13T20:51:29.875] [INFO] cheese - mongodb连接成功.
+[2021-12-13T21:24:12.308] [INFO] cheese - mongodb连接成功.
+[2021-12-13T21:38:01.458] [INFO] cheese - mongodb连接成功.
+[2021-12-13T21:40:35.806] [INFO] cheese - mongodb连接成功.
+[2021-12-13T21:54:44.199] [INFO] cheese - mongodb连接成功.
+[2021-12-13T21:56:53.414] [INFO] cheese - 更新Cocoa数据成功！

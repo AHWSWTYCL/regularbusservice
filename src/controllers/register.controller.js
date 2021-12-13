@@ -1,31 +1,26 @@
 const User = require("../models/user/user");
 
 class RegisterController {
-    register(req, res) {
-        let name = req.body.name
-        let password = req.body.password
+    async register(ctx, next) {
+        const {name, password} = ctx.request.body
 
-        let result;
+        let result = {};
 
-        User.find({name: name, password}, (err, doc) => {
-            let result = {};
-            if (err || doc.length === 0) {
-
-                new User({name: name, password: password})
-                    .save(function (err, ret) {
-                        if (err) {
-                            result.code = -1;
-                            res.json(result)
-                        } else {
-                            result.code = 1
-                            res.json(result)
-                        }
-                    })
-            } else {
-                result.code = 1
-                res.json(result)
+        try {
+            let res = await User.find({name: name, password})
+            if (res.length === 0) {
+                try {
+                    await new User({name, password}).save()
+                    result.code = 1
+                } catch (err) {
+                    result.code = -1
+                }
             }
-        })
+        } catch (err) {
+            result.code = -1
+        }
+
+        ctx.body = result
     }
 }
 
