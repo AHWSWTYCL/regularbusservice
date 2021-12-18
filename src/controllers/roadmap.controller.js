@@ -15,11 +15,13 @@ class RoadmapController {
         }
     }
 
-    async deleteStation(req, res) {
-        let stations = req.body.stations
+    async deleteStation(ctx, next) {
+        let stations = ctx.request.body.stations
         try {
             for (const station of stations) {
-                await Roadmap.deleteOne(station)
+                if (station.line && station.name && station.time) {
+                    await Roadmap.deleteOne(station)
+                }
             }
         } catch (err) {
             logger.error(err)
