@@ -2,31 +2,27 @@ const url = require('url')
 const User = require("../models/user/user");
 const Roadmap = require("../models/roadmap/roadmap");
 const logger = require("../logs/logger");
+const {getUserInfo, cancelLine} = require('../service/user.service')
+const {getRoadmap, updateRoadmap} = require('../service/roadmap.service')
 
 class UserController {
     async getUserInfo(ctx, next) {
         let userInfo = url.parse(ctx.request.url, true)
+        const {name, password} = userInfo.query
 
         let result = undefined
-        try {
-            let res = await User.find({name: userInfo.query.name, password: userInfo.query.password})
-            if (res.length !== 0) {
-                result = res[0]
-            }
-        } catch (err) {
 
+        let res = await getUserInfo({name, password})
+        if (res.length !== 0) {
+            result = res[0]
         }
 
         ctx.body = result
     }
 
     async getRoadmap(ctx, next) {
-        try {
-            let res = await Roadmap.find({})
-            ctx.body = res
-        } catch (err) {
-            logger.error(err)
-        }
+        let res = await getRoadmap()
+        ctx.body = res
     }
 
     async updateRoadmap(ctx, next) {
@@ -36,40 +32,31 @@ class UserController {
         let time = ctx.request.body.time
 
         let result = {}
-        try {
-            let res = await User.updateOne({name: name}, {$set:{line: line, station: station, time: time}})
-            logger.info('更新' + name + '数据成功！')
-            result.code = 0
-            ctx.body = result
-        } catch (err) {
-            logger.error('更新' + name + '数据失败：' + err)
+        if (!name || !line || !station || !time) {
             result.code = -1
             ctx.body = result
+            return
         }
+
+        let res = await updateRoadmap({name, line, station, time})
+        result.code = res === true ? 0 : -1
+        ctx.body = result
     }
+
 
     async cancel(ctx, next) {
         let name = ctx.request.body.name
 
         let result = {}
-        try {
-            let res = await User.find({name: name})
-            if (res.length === 0) {
-                result.code = -1
-                result.message = '此用户不存在'
-                ctx.body = result
-                return
-            }
 
-            try {
-                await User.updateOne({name: name}, {$set: {line: '', station:'', time: ''}})
-                result.code = 0
-                ctx.body = result
-            } catch (err) {
-                logger.error(err)
-            }
-        } catch (err) {
-            logger.error(err)
+        let res = await cancelLine(name)
+        if (res) {
+            result.code = 0
+            ctx.body = result
+        } else {
+            result.code = -1
+            result.message = '取消路线失败'
+            ctx.body = result
         }
     }
 }

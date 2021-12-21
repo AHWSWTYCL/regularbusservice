@@ -1,6 +1,7 @@
 const Router = require('koa-router')
 
 const {getUserInfo, getRoadmap, updateRoadmap, cancel} = require('../controllers/user.controller')
+const {verifyLogin} = require('../middleware/auth.middleware')
 
 
 const router = new Router()
